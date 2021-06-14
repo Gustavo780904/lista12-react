@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Login extends React.PureComponent {
+            constructor(props) {
+                super(props)
+                this.state = { username: '', pwd: '' }
+            }
+            valida = () => {
+                if (this.state.username && this.state.pwd)
+                    alert('Ok!, os dois campos foram preenchidos. Esta checagem valida se ambos são diferentes de nulo.')
+                else
+                    alert("Erro! Ambos, ou um dos campos não foi preenchido. Esta checagem valida se ambos são diferentes de nulo.")
+            }
+            updateData = (event) => {
+                this.setState({[event.target.name]: event.target.value})
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>Login</h2>
+                        <form>
+                            <input type="text" placeholder="Usuário" name="username" value={this.state.username} onChange={this.updateData} /><br />
+                            <input type="password" placeholder="Senha" name="pwd" value={this.state.pwd} onChange={this.updateData} /><br />
+                            <button onClick={this.valida}>Entrar</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

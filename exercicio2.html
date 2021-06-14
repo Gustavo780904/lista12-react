@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .form {
+            position: absolute;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Double extends React.PureComponent {
+
+            constructor(props) {
+                super(props);
+                this.state = { value1: 0, value2: 0, soma: 0 };
+            }
+
+            updateData = (event) => {
+                this.setState({ [event.target.name]: parseInt(event.target.value) });
+            }
+
+            calculaSoma = () => {
+                var resultado;
+                resultado = parseInt(this.state.value1 + this.state.value2);
+                return this.setState({ soma: resultado });
+            }
+            render() {
+                return (
+                    <div className="form">
+                        <h1>Calculadora</h1>
+                        <form className="form">
+                            <input type="text" name="value1" value={this.state.value1} onChange={this.updateData} />
+                            <input type="text" name="value2" value={this.state.value2} onChange={this.updateData} />
+                            <input type="button" value={"Somar"} onClick={this.calculaSoma} />
+                            <input type="text" value={this.state.soma} readOnly />
+                        </form>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<Double />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>
