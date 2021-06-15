@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Lista extends React.PureComponent {
+
+            render() {
+                return (
+                <div>
+                    <ul class="row">
+                        <li> <a href="/index.html">Home</a></li>
+                        <li> <a href="/exercicio1.html">Exercício 1</a></li>
+                        <li> <a href="/exercicio2.html">Exercício 2</a></li>
+                        <li> <a href="/exercicio3.html">Exercício 3</a></li>
+                    </ul>
+                </div>
+                )
+            }
+        }
+            ReactDOM.render(<Lista />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

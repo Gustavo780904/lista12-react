@@ -10,12 +10,9 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <style>
-        .form {
-            position: absolute;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+
 </head>
 
 <body>
@@ -30,22 +27,12 @@
             }
 
             updateData = (event) => {
-                const filtro = /^[+-]?[0-9]{0,0}(?:.[0-9]{0,10})?$/
-                var parcela = event.target.value;
-              
-                if(filtro.test(parcela)){
-                    console.log("ok")
-                    this.setState({ [event.target.name]: (event.target.value)});
-                }
-                else{
-                alert("Digite apenas números")
-                console.log("erro")
-            }               
+                this.setState({ [event.target.name]: (event.target.value) });
             }
-
             calculaSoma = () => {
                 var resultado;
-                resultado = parseFloat(this.state.value1) + parseFloat(this.state.value2);
+                if (this.state.value1)
+                    resultado = parseFloat(this.state.value1) + parseFloat(this.state.value2);
                 return this.setState({ resultado: resultado });
             }
             calculaSub = () => {
@@ -60,24 +47,32 @@
             }
             calculaDiv = () => {
                 var resultado;
-                (this.state.value2 != 0)? resultado = parseFloat(this.state.value1 / this.state.value2):alert("Impossível calcular divisão por 0.")
+                (this.state.value2 != 0) ? resultado = parseFloat(this.state.value1 / this.state.value2) : alert("Impossível calcular divisão por 0.")
                 return this.setState({ resultado: resultado.toFixed(2) });
             }
-            
+
             render() {
                 return (
-                    
-                    <div className="form">
-                        <h1>Calculadora</h1>
-                        <form className="form">
-                            <input type="text" name="value1" value={this.state.value1} onChange={this.updateData} placeholder="Valor 1"/>
-                            <input type="text" name="value2" value={this.state.value2} onChange={this.updateData} placeholder="Valor 2"/>
-                            <input type="button" value={"+"} onClick={this.calculaSoma} />
-                            <input type="button" value={"-"} onClick={this.calculaSub} />
-                            <input type="button" value={"x"} onClick={this.calculaMult} />
-                            <input type="button" value={"÷"} onClick={this.calculaDiv} />
-                            <input type="text" value={this.state.resultado} readOnly />
-                        </form>
+                    <div>
+                        <ul class="row">
+                            <li> <a href="/index.html">Home</a></li>
+                            <li> <a href="/exercicio1.html">Exercício 1</a></li>
+                            <li> <a href="/exercicio2.html">Exercício 2</a></li>
+                            <li> <a href="/exercicio3.html">Exercício 3</a></li>
+                        </ul>
+
+                        <div className="form">
+                            <h1>Calculadora</h1>
+                            <form className="form">
+                                <input type="number" name="value1" value={this.state.value1} onChange={this.updateData} placeholder="Valor 1" />
+                                <input type="number" name="value2" value={this.state.value2} onChange={this.updateData} placeholder="Valor 2" />
+                                <input type="button" value={"+"} onClick={this.calculaSoma} />
+                                <input type="button" value={"-"} onClick={this.calculaSub} />
+                                <input type="button" value={"x"} onClick={this.calculaMult} />
+                                <input type="button" value={"÷"} onClick={this.calculaDiv} />
+                                <input type="text" value={this.state.resultado} readOnly />
+                            </form>
+                        </div>
                     </div>
                 );
             }
